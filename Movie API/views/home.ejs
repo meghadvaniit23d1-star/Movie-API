@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= titles %></title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transform: scale(1.03);
+      transition: 0.2s ease;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .btn-custom {
+      background-color: #ff4b4b;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+    }
+    .card-body{
+      height: 200px;
+    }
+    .card{
+      width: 250px;
+
+    }
+    .card-text{
+      margin: 2px 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="#">🎬 INOX </a>
+      <form class="d-flex mx-auto w-50">
+        <input class="form-control me-2" type="search" placeholder="Search for Movies..." aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+      <a href="/addStudentform" class="btn btn-danger">Add Movie</a>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <div class="row g-4">
+      <% record.map((v, i) => { %>
+        <div class="col-sm-6 col-md-4 ">
+          <div class="card h-70 bg-light">
+            <img src="<%= v.image %>" class="card-img-top" style="height: 180px; object-fit: cover;" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title"><%= v.title %></h5>
+              <p class="card-text"><strong>Rating:</strong> <%= v.rating %></p>
+
+              
+              <p class="card-text"><strong>Genre:</strong> <%= v.genre %></p>
+              <p class="card-text"><strong>Release Date:</strong> <%= new Date(v.date).toLocaleDateString() %></p>
+
+
+              
+              <p class="card-text"><strong>Cast:</strong> <%= v.cast %></p>
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-between">
+              <a href="/deleteStudent/<%= v.id %>" class="btn btn-sm btn-danger">Delete</a>
+              <a href="/updateStudent/?stdPos=<%= v.id %>" class="btn btn-sm btn-primary">More Info</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit Movie</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <style>
+    html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  }
+
+.full-height {
+  height: 100dvh;
+}
+
+.left-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.movie-details {
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.form-label {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="#">🎬 INOX </a>
+      <form class="d-flex mx-auto w-50 text-light justify-content-center">
+        <h5 class="text-light my-2">Edit Movie</h5>
+      </form>
+      <a href="/" class="btn btn-danger">Home</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid full-height">
+    <div class="row h-100">
+      <!-- Left: Movie Poster -->
+      <div class="col-md-6 p-0">
+        <img src="<%= singleStudent.image %>" alt="Movie Poster" class="left-img" />
+      </div>
+
+      <!-- Right: Movie Details Form -->
+      <div class="col-md-6 d-flex flex-column movie-details">
+        <form method="POST" action="/editStudents/<%= index %>" enctype="multipart/form-data" class="w-100">
+          <h3>Edit Movie Details</h3>
+
+          <div class="mb-2">
+            <label class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" value="<%= singleStudent.title %>" required>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Rating</label>
+            <input type="text" name="rating" class="form-control" value="<%= singleStudent.rating %>" required>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Language</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="language" value="hindi"
+                <% if (singleStudent.language === 'hindi') { %> checked <% } %> >
+              <label class="form-check-label">Hindi</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="language" value="english"
+                <% if (singleStudent.language === 'english') { %> checked <% } %> >
+              <label class="form-check-label">English</label>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Genre</label><br>
+            <% const genres = ["Comedy", "Horror", "Action", "Science Fiction"]; %>
+            <% genres.forEach((genre) => { %>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="genre" value="<%= genre %>"
+                  <% if (singleStudent.genre.includes(genre)) { %> checked <% } %> >
+                <label class="form-check-label"><%= genre %></label>
+              </div>
+            <% }); %>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Release Date</label>
+            <input type="date" name="date" class="form-control"
+              value="<%= singleStudent.date.toISOString().split('T')[0] %>" />
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">City</label>
+            <select class="form-select" name="city" required>
+              <option value="">-- Select City --</option>
+              <% const cityArray = ['Surat', 'Ahemadabad', 'Vadodra', 'Pune']; %>
+              <% cityArray.forEach((city) => { %>
+                <option value="<%= city %>" <% if(singleStudent.city === city) { %> selected <% } %>><%= city %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Cast</label>
+            <input type="text" name="cast" class="form-control" value="<%= singleStudent.cast %>">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Image URL</label>
+            <input type="text" name="image" class="form-control" value="<%= singleStudent.image %>">
+          </div>
+
+          <div class="d-grid mt-2 mb-5">
+            <button type="submit" class="btn btn-success">Update Movie</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+  
+  </style>
+</head>
+
+<body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="#">🎬 INOX </a>
+      <form class="d-flex mx-auto  text-light">
+         <h1>Add Movie</h1>
+      </form>
+      <a href="/" class="btn btn-danger">HOME</a>
+    </div>
+  </nav>
+   
+  
+
+    <form method="post" class="d-flex justify-content-center align-items-center vh-100 bg-light " action="/addStudents" enctype="multipart/form-data">
+    <table align="center">
+        <tr class="mt-3">
+            <td>Enter Title :</td>
+            <td><input type="text" name="title" ></td>
+        </tr>
+        <tr class="mt-3">
+            <td>Enter Rating :</td>
+            <td><input type="text" name="rating" ></td>
+        </tr>
+        <tr class="mt-3">
+            <td>Enter Language :</td>
+            <td>
+                <input type="radio" name="language" value="hindi" >Hindi
+                <input type="radio" name="language" value="english" >English            
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Genre :</td>
+            <td>
+                <input type="checkbox" name="genre" value="Comedy" >Comedy
+                <input type="checkbox" name="genre" value="Horror" >Horror            
+                <input type="checkbox" name="genre" value="Action" >Action            
+                <input type="checkbox" name="genre" value="Science Fiction" >Science Fiction            
+            </td>
+        </tr>
+
+         <tr>
+                <td>Enter Date :</td>
+                <td><input type="date" name="date" required /></td>
+              </tr>
+        
+
+        <% var cityArray = ['Surat','Ahemadabad','Vadodra','Pune'] %>
+        <tr>
+            <td></td>
+            <td>
+                <select name="city">
+                    <option>--Select City--</option>
+                    <% cityArray.map((v,i) =>{ %>
+                        <option value="<%= v %>"> <%= v %></option>
+                  <%   }) %>    
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Enter Cast Name :</td>
+            <td><input type="text" name="cast"> <button >+</button> </td>
+        </tr>
+ 
+        <tr>
+            <td>Choose Image :</td>
+            <td><input  type="file" name="image" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="submit" ></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
