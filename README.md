@@ -21,7 +21,7 @@ Database: MongoDB (mongoose).
 
 ⚙️ Installation & Setup
 Clone the repository
-git clone https://github.com/your-username/movie-api.git
+git clone https://github.com/meghadvaniit23d1-star/movie-api.git
 
 Install dependencies
 npm install
